@@ -62,8 +62,8 @@ public class Tag {
         this.tagValue = value;
     }
 
-    public String getId() {
-        return tagUUID;
+    public Long getId() {
+        return id;
     }
 
 }
