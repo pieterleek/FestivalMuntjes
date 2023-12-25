@@ -1,29 +1,33 @@
 package nl.pieterleek.festivalmuntjes.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
+import java.util.Random;
+import java.util.UUID;
 
 @Entity
 public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long id = 0L;
+    private String tagUUID;
     private String tagName;
-    private String tagId;
     private String secretKey;
+    private int tagValue;
 
     public Tag() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public static Tag createSample(int i) {
+        Tag tag = new Tag();
+        Random rand = new Random();
+        tag.setTagName("Tag " + i);
+        tag.setSecretKey("SecretKey " + i);
+        tag.setTagValue(rand.nextInt(100));
+        tag.tagUUID = UUID.randomUUID().toString();
+        return tag;
     }
 
     public String getTagName() {
@@ -34,12 +38,12 @@ public class Tag {
         this.tagName = tagName;
     }
 
-    public String getTagId() {
-        return tagId;
+    public String getTagUUID() {
+        return tagUUID;
     }
 
-    public void setTagId(String tagId) {
-        this.tagId = tagId;
+    public void setTagUUID(String tagId) {
+        this.tagUUID = tagId;
     }
 
     public String getSecretKey() {
@@ -49,4 +53,17 @@ public class Tag {
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
+
+    public int getTagValue() {
+        return tagValue;
+    }
+
+    public void setTagValue(int value) {
+        this.tagValue = value;
+    }
+
+    public String getId() {
+        return tagUUID;
+    }
+
 }

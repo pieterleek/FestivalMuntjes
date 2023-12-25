@@ -2,11 +2,11 @@ package nl.pieterleek.festivalmuntjes.repository;
 
 public interface EntityRepository<E> {
 
-    public E get(int id);
-    public void add(E e);
-    public void update(E e);
-    public void delete(E e);
-    public void delete(int id);
-    public E[] getAll();
+    E get(String uid);
+    String add(E e);
+    void update(E e);
+    void delete(E e);
+    void delete(int id);
+    E[] getAll();
 
 }

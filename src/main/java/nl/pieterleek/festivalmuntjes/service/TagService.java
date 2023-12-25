@@ -5,6 +5,8 @@ import nl.pieterleek.festivalmuntjes.repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TagService {
 
@@ -15,19 +17,26 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
-   public int getTagValue(long tagId) {
-        return 0;
-
+    public Tag getTagValue(String tagUUID) {
+        return tagRepository.get(tagUUID);
     }
 
     public boolean pay(int amount, Tag tag) {
-       tagRepository.update(tag);
+        tagRepository.update(tag);
         return false;
     }
 
 
-    public boolean add(int amount, Tag tag) {
+    public boolean addMoney(int amount, Tag tag) {
         boolean added = false;
         return added;
+    }
+
+    public String addTag(Tag tag) {
+        return tagRepository.add(tag);
+    }
+
+    public List<Tag> getAllTags() {
+        return List.of(tagRepository.getAll());
     }
 }

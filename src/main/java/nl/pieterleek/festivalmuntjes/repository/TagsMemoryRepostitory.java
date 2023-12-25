@@ -1,6 +1,7 @@
 package nl.pieterleek.festivalmuntjes.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import nl.pieterleek.festivalmuntjes.model.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,8 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 
 @Repository
-public class TagsMemoryRepostitory  implements EntityRepository<Tag> {
+@Transactional
+public class TagsMemoryRepostitory implements EntityRepository<Tag> {
 
     EntityManager em;
 
@@ -19,13 +21,14 @@ public class TagsMemoryRepostitory  implements EntityRepository<Tag> {
     }
 
     @Override
-    public Tag get(int id) {
-        return em.find(Tag.class, id);
+    public Tag get(String uid) {
+        return em.find(Tag.class, uid);
     }
 
     @Override
-    public void add(Tag tag) {
+    public String add(Tag tag) {
         em.persist(tag);
+        return tag.getId();
     }
 
     @Override
@@ -36,13 +39,11 @@ public class TagsMemoryRepostitory  implements EntityRepository<Tag> {
     @Override
     public void delete(Tag tag) {
         em.remove(tag);
-        em.flush();
     }
 
     @Override
     public void delete(int id) {
-        em.remove(get(id));
-        em.flush();
+        em.remove(id);
     }
 
     @Override
