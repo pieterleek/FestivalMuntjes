@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>nl.pieterleek</groupId>
-    <artifactId>FestivalMuntjes</artifactId>
+    <artifactId>FestivalMuntjes_backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>FestivalMuntjes</name>
     <description>FestivalMuntjes</description>
@@ -48,5 +48,7 @@
             </plugin>
         </plugins>
     </build>
+
+    <packaging>jar</packaging>
 
 </project>
