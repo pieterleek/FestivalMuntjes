@@ -5,8 +5,6 @@ import jakarta.transaction.Transactional;
 import nl.pieterleek.festivalmuntjes.model.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.lang.annotation.Annotation;
 import java.util.List;
 
 @Repository
