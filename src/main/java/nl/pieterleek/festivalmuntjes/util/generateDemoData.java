@@ -21,7 +21,7 @@ public class generateDemoData {
      * Creates 50 tags with random values
      */
     public void createInitialTags() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 20; i++) {
             String savedTag = this.tagRepository.add(Tag.createSample(i));
             System.out.println("Saved tag with id " + savedTag);
         }

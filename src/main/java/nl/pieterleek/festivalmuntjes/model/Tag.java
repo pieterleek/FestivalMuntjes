@@ -12,12 +12,25 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id = 0L;
+
+    @Column
     private String tagUUID;
+
+    @Column
     private String tagName;
+
+    @Column
     private String secretKey;
+
+    @Column
     private int tagValue;
 
     public Tag() {
+        // Provide default values in the constructor if needed
+        this.tagUUID = UUID.randomUUID().toString();
+        this.tagName = "";
+        this.secretKey = "";
+        this.tagValue = 0;
     }
 
     public static Tag createSample(int i) {
@@ -25,9 +38,24 @@ public class Tag {
         Random rand = new Random();
         tag.setTagName("Tag " + i);
         tag.setSecretKey("SecretKey " + i);
-        tag.setTagValue(rand.nextInt(100));
-        tag.tagUUID = UUID.randomUUID().toString();
+        tag.setTagValue(rand.nextInt(10));
         return tag;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTagUUID() {
+        return tagUUID;
+    }
+
+    public void setTagUUID(String tagUUID) {
+        this.tagUUID = tagUUID;
     }
 
     public String getTagName() {
@@ -36,14 +64,6 @@ public class Tag {
 
     public void setTagName(String tagName) {
         this.tagName = tagName;
-    }
-
-    public String getTagUUID() {
-        return tagUUID;
-    }
-
-    public void setTagUUID(String tagId) {
-        this.tagUUID = tagId;
     }
 
     public String getSecretKey() {
@@ -58,12 +78,7 @@ public class Tag {
         return tagValue;
     }
 
-    public void setTagValue(int value) {
-        this.tagValue = value;
+    public void setTagValue(int tagValue) {
+        this.tagValue = tagValue;
     }
-
-    public Long getId() {
-        return id;
-    }
-
 }

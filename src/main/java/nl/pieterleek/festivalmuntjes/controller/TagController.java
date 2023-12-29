@@ -1,6 +1,7 @@
 package nl.pieterleek.festivalmuntjes.controller;
 
 import nl.pieterleek.festivalmuntjes.model.Tag;
+import nl.pieterleek.festivalmuntjes.notifications.NotificationDistributor;
 import nl.pieterleek.festivalmuntjes.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +12,13 @@ import java.util.List;
 @RequestMapping("/tag")
 public class TagController {
 
-    TagService tagService;
+    private final TagService tagService;
+    private final NotificationDistributor notificationDistributor;
 
     @Autowired
-    public TagController(TagService tagService) {
+    public TagController(TagService tagService, NotificationDistributor notificationDistributor) {
         this.tagService = tagService;
+        this.notificationDistributor = notificationDistributor;
     }
 
     @GetMapping(path = "all", produces = "application/json")
@@ -23,27 +26,21 @@ public class TagController {
         return tagService.getAllTags();
     }
 
-    @GetMapping(path = "{tagUid}", produces = "application/json")
-    public int getTagValue(@PathVariable() String tagUid)  {
-
-        if (tagService.getTagValue(tagUid) != null) {
-            return tagService.getTagValue(tagUid).getTagValue();
-        }
-       return 0;
+    @GetMapping(path = "{tagId}", produces = "application/json")
+    public int getTagValue(@PathVariable String tagId) {
+        Tag tag = tagService.getTagValue(tagId);
+        return (tag != null) ? tag.getTagValue() : 0;
     }
 
-    @PutMapping(path = "{amount}", produces = "application/json")
-    public boolean pay(@PathVariable() int amount, @RequestBody Tag tag) {
+    @PutMapping(path = "pay/{amount}", produces = "application/json")
+    public boolean payMoney(@PathVariable int amount, @RequestBody Tag tag) {
+        this.notificationDistributor.notify("tags");
         return tagService.pay(amount, tag);
     }
 
-    @PostMapping (path = "{amount}", produces = "application/json")
-    public boolean add(@PathVariable() int amount, @RequestBody Tag tag) {
+    @PostMapping(path = "add/{amount}", produces = "application/json")
+    public boolean addMoney(@PathVariable int amount, @RequestBody Tag tag) {
+        this.notificationDistributor.notify("tags");
         return tagService.addMoney(amount, tag);
     }
-
-
-
-
-
 }
