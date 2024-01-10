@@ -46,7 +46,7 @@ public class NotificationDistributor extends TextWebSocketHandler {
     public void broadcastToAll()  {
         for (WebSocketSession sess : sessions) {
             try {
-                sess.sendMessage(new TextMessage("Hello"));
+                sess.sendMessage(new TextMessage("Update from server"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
