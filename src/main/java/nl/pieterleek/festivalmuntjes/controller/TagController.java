@@ -28,19 +28,20 @@ public class TagController {
 
     @GetMapping(path = "{tagId}", produces = "application/json")
     public int getTagValue(@PathVariable String tagId) {
+        notificationDistributor.broadcastToAll();
         Tag tag = tagService.getTagValue(tagId);
+
         return (tag != null) ? tag.getTagValue() : 0;
     }
 
     @PutMapping(path = "pay/{amount}", produces = "application/json")
     public boolean payMoney(@PathVariable int amount, @RequestBody Tag tag) {
-        this.notificationDistributor.notify("tags");
         return tagService.pay(amount, tag);
     }
 
     @PostMapping(path = "add/{amount}", produces = "application/json")
     public boolean addMoney(@PathVariable int amount, @RequestBody Tag tag) {
-        this.notificationDistributor.notify("tags");
         return tagService.addMoney(amount, tag);
+
     }
 }
