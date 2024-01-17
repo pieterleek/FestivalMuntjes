@@ -21,9 +21,23 @@ public class generateDemoData {
      * Creates 50 tags with random values
      */
     public void createInitialTags() {
-        for (int i = 0; i < 20; i++) {
-            String savedTag = this.tagRepository.add(Tag.createSample(i));
-            System.out.println("Saved tag with id " + savedTag);
+
+        // demo tags
+        Tag tag = Tag.createSample(10);
+        tag.setTagUUID("150437957093");
+        this.tagRepository.add(tag);
+
+        tag = Tag.createSample(11);
+        tag.setTagUUID("83213421993");
+        this.tagRepository.add(tag);
+
+        tag = Tag.createSample(11);
+        tag.setTagUUID("90614513592");
+        this.tagRepository.add(tag);
+
+
+        for (int i = 0; i < 5; i++) {
+            this.tagRepository.add(Tag.createSample(i));
         }
     }
 }

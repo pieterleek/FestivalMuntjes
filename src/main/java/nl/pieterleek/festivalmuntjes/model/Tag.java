@@ -10,9 +10,6 @@ import java.util.UUID;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id = 0L;
-
     @Column
     private String tagUUID;
 
@@ -40,14 +37,6 @@ public class Tag {
         tag.setSecretKey("SecretKey " + i);
         tag.setTagValue(rand.nextInt(10));
         return tag;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTagUUID() {
@@ -80,5 +69,15 @@ public class Tag {
 
     public void setTagValue(int tagValue) {
         this.tagValue = tagValue;
+    }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                ", tagUUID='" + tagUUID + '\'' +
+                ", tagName='" + tagName + '\'' +
+                ", secretKey='" + secretKey + '\'' +
+                ", tagValue=" + tagValue +
+                '}';
     }
 }

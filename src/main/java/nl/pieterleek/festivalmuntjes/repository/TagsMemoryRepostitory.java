@@ -24,9 +24,8 @@ public class TagsMemoryRepostitory implements EntityRepository<Tag> {
     }
 
     @Override
-    public String add(Tag tag) {
+    public void add(Tag tag) {
         em.persist(tag);
-        return tag.getTagUUID();
     }
 
     @Override

@@ -52,7 +52,11 @@
             </plugin>
         </plugins>
     </build>
-
+    <distributionManagement>
+        <repository>
+            <id>1</id>
+            <url>www.festivalmuntjes.com</url>
+        </repository>
+    </distributionManagement>
     <packaging>jar</packaging>
-
 </project>

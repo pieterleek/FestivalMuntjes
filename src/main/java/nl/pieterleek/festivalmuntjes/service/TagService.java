@@ -18,28 +18,30 @@ public class TagService {
     }
 
     // Get tag value by UUID
-    public Tag getTagValue(String tagUUID) {
+    public Tag getTag(String tagUUID) {
         return tagRepository.get(tagUUID);
     }
 
     // Deduct money from tag
     public boolean pay(int amount, Tag tag) {
+
+        Tag tag1 = getTag(tag.getTagUUID());
         // Check for negative amounts
         if (amount < 0) {
-            throw new IllegalArgumentException("Amount must be non-negative");
+            return false;
         }
 
-        synchronized (tag) {
+        synchronized (tag1) {
             // Not enough money
-            if (amount > tag.getTagValue()) {
-                throw new IllegalStateException("Insufficient funds");
+            if (amount > tag1.getTagValue()) {
+                return false;
             }
 
             // Update tag value
-            tag.setTagValue(tag.getTagValue() - amount);
+            tag1.setTagValue(tag1.getTagValue() - amount);
 
             // Write to database
-            updateTagInDatabase(tag);
+            updateTagInDatabase(tag1);
             return true;
         }
     }
@@ -51,15 +53,16 @@ public class TagService {
             throw new IllegalArgumentException("Amount must be non-negative");
         }
 
-        // Implement logic for adding money to the tag here
-
-        // Placeholder implementation always returns false
-        return false;
+        Tag tag1 = getTag(tag.getTagUUID());
+        tag1.setTagValue(tag1.getTagValue() + amount);
+        System.out.println("TAG" + tag1.getTagValue());
+        updateTagInDatabase(tag1);
+        return true;
     }
 
     // Add a new tag to the repository
-    public String addTag(Tag tag) {
-        return tagRepository.add(tag);
+    public void addTag(Tag tag) {
+        tagRepository.add(tag);
     }
 
     // Get a list of all tags
