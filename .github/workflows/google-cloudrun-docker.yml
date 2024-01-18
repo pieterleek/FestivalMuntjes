@@ -28,11 +28,11 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 11
+          java-version: 17
           cache: maven
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean package
         
       - name: Copy Jar file
         run: mv build/libs/$(ls build/libs) app.jar
