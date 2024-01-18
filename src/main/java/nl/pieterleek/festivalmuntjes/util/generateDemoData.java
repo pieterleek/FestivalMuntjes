@@ -36,7 +36,7 @@ public class generateDemoData {
         this.tagRepository.add(tag);
 
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             this.tagRepository.add(Tag.createSample(i));
         }
     }
