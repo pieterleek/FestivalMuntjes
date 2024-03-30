@@ -1,4 +1,4 @@
-package nl.pieterleek.festivalmuntjes.repository;
+package io.qman.festivalcoins.repository;
 
 public interface EntityRepository<E> {
 

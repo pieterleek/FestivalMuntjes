@@ -1,8 +1,8 @@
-package nl.pieterleek.festivalmuntjes.repository;
+package io.qman.festivalcoins.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import nl.pieterleek.festivalmuntjes.model.Tag;
+import io.qman.festivalcoins.entity.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;

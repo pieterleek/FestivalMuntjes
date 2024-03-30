@@ -1,8 +1,8 @@
-package nl.pieterleek.festivalmuntjes.controller;
+package io.qman.festivalcoins.controller;
 
-import nl.pieterleek.festivalmuntjes.model.Tag;
-import nl.pieterleek.festivalmuntjes.notifications.NotificationDistributor;
-import nl.pieterleek.festivalmuntjes.service.TagService;
+import io.qman.festivalcoins.notifications.NotificationDistributor;
+import io.qman.festivalcoins.entity.Tag;
+import io.qman.festivalcoins.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

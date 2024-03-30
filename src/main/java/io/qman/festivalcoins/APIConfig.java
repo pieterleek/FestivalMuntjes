@@ -1,6 +1,6 @@
-package nl.pieterleek.festivalmuntjes;
+package io.qman.festivalcoins;
 
-import nl.pieterleek.festivalmuntjes.notifications.NotificationDistributor;
+import io.qman.festivalcoins.notifications.NotificationDistributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class APIConfig implements WebMvcConfigurer, WebSocketConfigurer {
     @Autowired
     private NotificationDistributor notificationDistributor;
 
-    @Value("${allowed.cors.clients:http://*.festivalmuntjes.com:*, http://localhost:*}")
+    @Value("${allowed.cors.clients:https://*.festivalmuntjes.com:*, http://localhost:*}")
     private String allowedCorsClients;
 
     @Override

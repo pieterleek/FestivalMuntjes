@@ -1,13 +1,13 @@
-package nl.pieterleek.festivalmuntjes;
+package io.qman.festivalcoins;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FestivalMuntjesApplication {
+public class FestivalCoinsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FestivalMuntjesApplication.class, args);
+        SpringApplication.run(FestivalCoinsApplication.class, args);
     }
 
 }

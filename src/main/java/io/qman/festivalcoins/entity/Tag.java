@@ -1,7 +1,6 @@
-package nl.pieterleek.festivalmuntjes.model;
+package io.qman.festivalcoins.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Random;
 import java.util.UUID;

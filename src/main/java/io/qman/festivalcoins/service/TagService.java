@@ -1,7 +1,7 @@
-package nl.pieterleek.festivalmuntjes.service;
+package io.qman.festivalcoins.service;
 
-import nl.pieterleek.festivalmuntjes.model.Tag;
-import nl.pieterleek.festivalmuntjes.repository.EntityRepository;
+import io.qman.festivalcoins.repository.EntityRepository;
+import io.qman.festivalcoins.entity.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

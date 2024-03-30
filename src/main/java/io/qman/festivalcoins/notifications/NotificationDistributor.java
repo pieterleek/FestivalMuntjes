@@ -1,4 +1,4 @@
-package nl.pieterleek.festivalmuntjes.notifications;
+package io.qman.festivalcoins.notifications;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
