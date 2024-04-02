@@ -1,4 +1,5 @@
 package io.qman.festivalcoins.service;
+
 import org.springframework.stereotype.Service;
 
 @Service

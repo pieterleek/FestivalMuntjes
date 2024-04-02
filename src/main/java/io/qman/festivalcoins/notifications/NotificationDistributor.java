@@ -6,6 +6,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +36,14 @@ public class NotificationDistributor extends TextWebSocketHandler {
         addSession(session);
         System.out.println("Connection established for session=" + session);
     }
+
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         removeSession(session);
         System.out.println("Connection closed for session=" + session);
     }
 
-    public void broadcastToAll()  {
+    public void broadcastToAll() {
         for (WebSocketSession sess : sessions) {
             try {
                 sess.sendMessage(new TextMessage("Update from server"));

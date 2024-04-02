@@ -1,7 +1,7 @@
 package io.qman.festivalcoins.controller;
 
-import io.qman.festivalcoins.notifications.NotificationDistributor;
 import io.qman.festivalcoins.entity.Tag;
+import io.qman.festivalcoins.notifications.NotificationDistributor;
 import io.qman.festivalcoins.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

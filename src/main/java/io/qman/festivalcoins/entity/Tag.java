@@ -1,6 +1,8 @@
 package io.qman.festivalcoins.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Random;
 import java.util.UUID;

@@ -1,7 +1,7 @@
 package io.qman.festivalcoins.service;
 
-import io.qman.festivalcoins.repository.EntityRepository;
 import io.qman.festivalcoins.entity.Tag;
+import io.qman.festivalcoins.repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

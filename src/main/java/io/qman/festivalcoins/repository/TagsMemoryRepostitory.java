@@ -1,10 +1,11 @@
 package io.qman.festivalcoins.repository;
 
+import io.qman.festivalcoins.entity.Tag;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import io.qman.festivalcoins.entity.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository

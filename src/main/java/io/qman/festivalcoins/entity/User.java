@@ -44,6 +44,11 @@ public class User implements UserDetails {
         return password;
     }
 
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
     @Override
     public String getUsername() {
         return email;
@@ -93,11 +98,6 @@ public class User implements UserDetails {
 
     public User setEmail(String email) {
         this.email = email;
-        return this;
-    }
-
-    public User setPassword(String password) {
-        this.password = password;
         return this;
     }
 
