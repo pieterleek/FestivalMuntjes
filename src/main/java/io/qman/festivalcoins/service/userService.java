@@ -7,10 +7,10 @@ public class userService {
 
     public userService() {
     }
-
+    
     public String getUserName(String tagId) {
-        String userName = "";
-        return userName;
+        return "";
     }
+
 
 }

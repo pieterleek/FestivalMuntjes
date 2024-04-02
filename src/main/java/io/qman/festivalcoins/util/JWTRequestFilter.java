@@ -1,6 +1,5 @@
 package io.qman.festivalcoins.util;
 
-
 import io.qman.festivalcoins.APIConfig;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -14,12 +13,34 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * This class is a filter that checks for a JSON Web Token (JWT) in the request.
+ * It is annotated as a Component, meaning it's a Spring-managed bean.
+ */
 @Component
 public class JWTRequestFilter extends OncePerRequestFilter {
 
-    @Autowired
+    // Configuration for the API
     APIConfig apiConfig;
 
+    /**
+     * Constructor for the JWTRequestFilter class.
+     * @param apiConfig an instance of APIConfig
+     */
+    @Autowired
+    public JWTRequestFilter(APIConfig apiConfig) {
+        this.apiConfig = apiConfig;
+    }
+
+    /**
+     * This method is called for every request. It checks if the request contains a valid JWT.
+     * If the request does not contain a valid JWT, it sends an error response.
+     * @param request the HttpServletRequest
+     * @param response the HttpServletResponse
+     * @param filterChain the FilterChain
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -50,9 +71,5 @@ public class JWTRequestFilter extends OncePerRequestFilter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage() + " You need to logon first.");
             return;
         }
-
-
     }
 }
-
-

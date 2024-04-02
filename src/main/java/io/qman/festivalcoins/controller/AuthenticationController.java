@@ -1,6 +1,5 @@
 package io.qman.festivalcoins.controller;
 
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.qman.festivalcoins.APIConfig;
 import io.qman.festivalcoins.entity.Account;
@@ -18,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * This class is a controller for handling authentication related requests.
+ * It is annotated as a RestController, meaning it's used to build REST API.
+ */
 @RestController
 @RequestMapping("/authentication")
 public class AuthenticationController {
@@ -25,12 +28,24 @@ public class AuthenticationController {
     private final AccountRepository accountsRepo;
     APIConfig apiConfig;
 
+    /**
+     * Constructor for the AuthenticationController class.
+     * @param apiConfig an instance of APIConfig class
+     * @param accountsRepo an instance of AccountRepository class
+     */
     @Autowired
     public AuthenticationController(APIConfig apiConfig, AccountRepository accountsRepo) {
         this.apiConfig = apiConfig;
         this.accountsRepo = accountsRepo;
     }
 
+    /**
+     * This method is used to authenticate an account.
+     * It is mapped to the /login endpoint and the HTTP POST method.
+     * @param signInInfo a JSON object containing the sign in information (email and password)
+     * @param request an HttpServletRequest object
+     * @return a ResponseEntity containing the authenticated account and the issued token
+     */
     @PostMapping(path = "/login")
     public ResponseEntity<Account> authenticateAccount(
             @RequestBody ObjectNode signInInfo,
@@ -49,7 +64,7 @@ public class AuthenticationController {
         Account account = !accounts.isEmpty() ? accounts.get(0) : null;
         System.out.println(accounts);
 
-        if (account == null || !account.verfiyPassword(password)) {
+        if (account == null || !account.verifyPassword(password)) {
             throw new NotAcceptableException("Cannot authenticate account with email=" + email);
         }
 
