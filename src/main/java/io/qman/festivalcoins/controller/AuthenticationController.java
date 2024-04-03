@@ -62,7 +62,6 @@ public class AuthenticationController {
 
         List<Account> accounts = accountsRepo.findByQuery("Accounts_find_by_email", email);
         Account account = !accounts.isEmpty() ? accounts.get(0) : null;
-        System.out.println(accounts);
 
         if (account == null || !account.verifyPassword(password)) {
             throw new NotAcceptableException("Cannot authenticate account with email=" + email);

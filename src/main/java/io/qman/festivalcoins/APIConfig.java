@@ -4,6 +4,7 @@ import io.qman.festivalcoins.notifications.NotificationDistributor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -27,7 +28,7 @@ public class APIConfig implements WebMvcConfigurer, WebSocketConfigurer {
     private static final double REBOOT_CODE = 63.0427; // Math.random();
 
     // path prefixes that will be protected by the authentication filter
-    public Set<String> SECURED_PATHS = Set.of("/accounts");
+    public Set<String> SECURED_PATHS = Set.of("/account", "/tag");
 
     @Autowired
     private NotificationDistributor notificationDistributor;
@@ -64,6 +65,9 @@ public class APIConfig implements WebMvcConfigurer, WebSocketConfigurer {
         registry.addMapping("/**")
                 .allowedOriginPatterns("http://localhost:*", getHostIPAddressPattern(), "http://*.festivalmuntjes.com:*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE, IP_FORWARDED_FOR)
+                .exposedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE, IP_FORWARDED_FOR)
+                .allowCredentials(true)
                 .allowedOrigins("*");
     }
 
