@@ -16,7 +16,7 @@ steps:
       - '--image'
       - 'gcr.io/$PROJECT_ID/cloudrun'
       - '--region'
-      - 'europe-west4'
+      - 'europe-west1'
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
