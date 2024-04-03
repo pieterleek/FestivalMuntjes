@@ -1,5 +1,5 @@
 # Stage 1: compile a JAR file
-FROM maven:3.6.3-jdk-13 as builder
+FROM maven:3.8.4-openjdk-11-slim AS build
 
 # Copy local code to the container image.
 WORKDIR /app
@@ -7,10 +7,10 @@ COPY pom.xml .
 COPY src ./src
 
 # Build a release artifact.
-RUN mvn package -DskipTests
+RUN mvn clean package -DskipTests
+# Use an official OpenJDK image as the base image
+FROM openjdk:11-jre-slim
 
-# Stage 2: run the previously built JAR file
-FROM adoptopenjdk/openjdk13:alpine-slim
 
 COPY --from=builder /app/target/cloudrun-*.jar /cloudrun.jar
 
