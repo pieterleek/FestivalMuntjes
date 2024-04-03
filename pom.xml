@@ -93,7 +93,7 @@
     <distributionManagement>
         <repository>
             <id>1</id>
-            <url>www.festivalmuntjes.com</url>
+            <url>http://localhost:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
     <packaging>jar</packaging>

@@ -11,7 +11,7 @@ RUN mvn clean package -DskipTests
 # Use an official OpenJDK image as the base image
 FROM eclipse-temurin:17-jdk-alpine
 
-COPY --from=builder /app/target/cloudrun-*.jar /cloudrun.jar
+COPY --from=builder /app/target/app-*.jar /app.jar
 
 # Run the web service on container startup.
-CMD ["java", "-jar", "/cloudrun.jar"]
+CMD ["java", "-jar", "/app.jar"]
