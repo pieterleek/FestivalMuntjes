@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17-jdk-alpine
 EXPOSE 8080
-ADD target/*.jar app.jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY target/*.jar my-app.jar
+ENTRYPOINT ["java","-jar","my-app.jar"]
