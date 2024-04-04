@@ -23,7 +23,7 @@ public class Account {
     @SequenceGenerator(name = "Account_ids", initialValue = 100001)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Account_ids")
     @Id
-    private long id = 0L;     // identification of an Author
+    private long id = 0L;
 
     @JsonView(ViewClasses.Shallow.class)
     private String name;

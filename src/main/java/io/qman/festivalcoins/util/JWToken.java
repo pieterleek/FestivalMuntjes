@@ -4,7 +4,7 @@ import io.jsonwebtoken.*;
 import io.qman.festivalcoins.APIConfig;
 
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;

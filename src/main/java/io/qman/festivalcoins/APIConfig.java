@@ -24,21 +24,22 @@ import java.util.Set;
 @EnableWebSocket
 public class APIConfig implements WebMvcConfigurer, WebSocketConfigurer {
 
+    private final NotificationDistributor notificationDistributor;
     public static final String IP_FORWARDED_FOR = "X-Forwarded-For";
     private static final double REBOOT_CODE = 63.0427; // Math.random();
 
     // path prefixes that will be protected by the authentication filter
-    public Set<String> SECURED_PATHS = Set.of("/account", "/tag");
+    public Set<String> SECURED_PATHS = Set.of("/tag");
+
 
     @Autowired
-    private NotificationDistributor notificationDistributor;
+    public APIConfig(NotificationDistributor notificationDistributor) {
+        this.notificationDistributor = notificationDistributor;
+    }
 
     // JWT configuration that can be adjusted from application.properties
     @Value("${jwt.issuer:private company}")
     private String issuer;
-
-    @Value("${allowed.cors.clients:https://*.festivalmuntjes.com:*, http://localhost:*}")
-    private String allowedCorsClients;
 
     @Value("${jwt.passphrase:This is very secret information for my private encryption key.}")
     private String passphrase;
@@ -63,18 +64,18 @@ public class APIConfig implements WebMvcConfigurer, WebSocketConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("http://localhost:*", getHostIPAddressPattern(), "http://*.festivalmuntjes.com:*")
+                .allowedOriginPatterns("http://localhost:*", getHostIPAddressPattern(), "http://*.hva.nl:*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE, IP_FORWARDED_FOR)
                 .exposedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE, IP_FORWARDED_FOR)
-                .allowCredentials(true)
-                .allowedOrigins("*");
+                .allowCredentials(true);
     }
 
-    /**
-     * This method returns the host IP address pattern.
-     * @return the host IP address pattern
-     */
+
+        /**
+         * This method returns the host IP address pattern.
+         * @return the host IP address pattern
+         */
     private String getHostIPAddressPattern() {
         try {
             return "http://" + Inet4Address.getLocalHost().getHostAddress() + ":*";

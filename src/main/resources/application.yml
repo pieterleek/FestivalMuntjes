@@ -1,7 +1,7 @@
 logging:
     level:
         org:
-            springframework: info
+            springframework: debug
 security:
     jwt:
         expiration-time: ${JWT_EXPIRATIONTIME}
@@ -10,6 +10,8 @@ server:
     error:
         include-binding-errors: always
         include-message: always
+        whitelabel:
+          enabled: false
     port: 8080
 spring:
     config:
