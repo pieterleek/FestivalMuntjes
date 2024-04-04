@@ -1,17 +1,7 @@
-# Stage 1: compile a JAR file
-FROM eclipse-temurin:17-jdk-alpine AS build
+FROM openjdk:17-alpine
 
-# Copy local code to the container image.
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+EXPOSE 8080
 
-# Build a release artifact.
-RUN mvn clean package -DskipTests
-# Use an official OpenJDK image as the base image
-FROM eclipse-temurin:17-jdk-alpine
+COPY ./target/app.jar ROOT.jar
 
-COPY --from=builder /app/target/app-*.jar /app.jar
-
-# Run the web service on container startup.
-CMD ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "ROOT.jar"]
