@@ -1,3 +1,3 @@
 FROM eclipse-temurin:17-jdk-alpine
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","Festivalcoins_backend-1.jar"]
+COPY target/*.jar my-app.jar
+ENTRYPOINT ["java","-jar","my-app.jar"]
